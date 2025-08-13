@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🚀 Bio Protocol - DeSci Ekosisteminin Geleceği</title>
+  <meta name="description" content="Bio Protocol V2 Launchpad, BioXP sistemi ve merkeziyetsiz bilim ekosistemi hakkında kapsamlı rehber" />
+  <style>
+    :root{
+      --bg:#0a0e1a; --card:#111827; --muted:#6b7280; --accent:#10b981; --accent2:#3b82f6; --text:#f9fafb; --warn:#f59e0b; --ok:#10b981; --pink:#ec4899;
+      --gradient1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 800px at 100% -20%, rgba(16,185,129,.15), transparent 60%),
+                         radial-gradient(1200px 800px at -10% 120%, rgba(59,130,246,.15), transparent 60%), var(--bg);
+         color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif}
+    a{color:var(--accent2); text-decoration:none; transition: all 0.3s ease}
+    a:hover{text-decoration:none; color:var(--accent); transform: translateY(-2px)}
+    .wrap{max-width:1200px; margin:0 auto; padding:32px 20px 80px}
+    
+    /* Header Styles */
+    header{display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; margin-bottom:40px; padding:30px; background: linear-gradient(135deg, rgba(16,185,129,.1), rgba(59,130,246,.1)); border-radius:24px; border:1px solid rgba(255,255,255,.1)}
+    .brand{display:flex; gap:16px; align-items:center}
+    .logo{width:60px; height:60px; border-radius:16px; background:var(--gradient1); box-shadow:0 8px 32px rgba(16,185,129,.3); animation: float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-10px)}}
+    h1{font-size: clamp(32px, 4vw, 48px); margin:0; background:var(--gradient2); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
+    .pill{padding:8px 16px; border-radius:999px; background:var(--gradient3); color:white; font-weight:700; font-size:14px; box-shadow:0 4px 15px rgba(59,130,246,.3)}
+    
+    /* Grid & Layout */
+    .grid{display:grid; gap:24px}
+    @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+    
+    /* Section Styles */
+    section{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.12); border-radius:24px; padding:32px; box-shadow:0 20px 40px rgba(0,0,0,.3); transition: all 0.3s ease; position:relative; overflow:hidden; margin-bottom:32px}
+    section:hover{transform: translateY(-5px); box-shadow:0 25px 50px rgba(0,0,0,.4)}
+    section::before{content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--gradient1); opacity:0; transition: opacity 0.3s ease}
+    section:hover::before{opacity:1}
+    
+    h2{margin:0 0 16px; font-size: clamp(26px, 2.5vw, 32px); background:var(--gradient4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text}
+    h3{margin:12px 0 10px; font-size:20px; color:var(--accent)}
+    p{margin:8px 0 12px; line-height:1.7}
+    
+    /* Tag Styles */
+    .tag{display:inline-flex; align-items:center; gap:8px; background:var(--gradient1); color:white; border:none; padding:8px 16px; border-radius:999px; font-weight:700; font-size:14px; box-shadow:0 4px 15px rgba(16,185,129,.3); margin-bottom:20px}
+    
+    /* Card Styles */
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:20px; transition: all 0.3s ease; position:relative}
+    .card:hover{transform: translateY(-3px); box-shadow:0 15px 30px rgba(0,0,0,.3); border-color:var(--accent)}
+    
+    /* Button Styles */
+    .btn{display:inline-flex; gap:10px; align-items:center; background:var(--gradient1); color:white; border:none; font-weight:700; padding:14px 24px; border-radius:16px; font-size:16px; transition: all 0.3s ease; box-shadow:0 8px 25px rgba(16,185,129,.3)}
+    .btn:hover{transform: translateY(-3px); box-shadow:0 12px 35px rgba(16,185,129,.4)}
+    .btn.secondary{background:var(--gradient2); box-shadow:0 8px 15px rgba(236,72,153,.3)}
+    .btn.secondary:hover{box-shadow:0 12px 35px rgba(236,72,153,.4)}
+    
+    /* Interactive Elements */
+    .row{display:grid; grid-template-columns:40px 1fr auto; gap:16px; align-items:start; padding:16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:18px; transition: all 0.3s ease}
+    .row:hover{background:rgba(255,255,255,.08); transform: translateX(5px)}
+    .ico{width:40px; height:40px; display:grid; place-items:center; border-radius:12px; background:var(--gradient3); font-size:20px; box-shadow:0 4px 15px rgba(59,130,246,.3)}
+    
+    /* Progress Bars */
+    .progress-bar{width:100%; height:8px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; margin:8px 0}
+    .progress-fill{height:100%; background:var(--gradient1); border-radius:4px; animation: fillBar 2s ease-out}
+    @keyframes fillBar{from{width:0%} to{width:100%}}
+    
+    /* Floating Elements */
+    .floating{animation: float 4s ease-in-out infinite}
+    .floating:nth-child(2){animation-delay: 0.5s}
+    .floating:nth-child(3){animation-delay: 1s}
+    
+    /* Stats */
+    .stat{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:14px}
+    .stat b{color:var(--text)}
+    
+    /* Footer */
+    footer{margin-top:40px; color:var(--muted); text-align:center; padding:30px; background:rgba(255,255,255,.02); border-radius:20px}
+    
+    /* Responsive */
+    @media(max-width:768px){.wrap{padding:20px 15px} section{padding:24px} header{padding:20px}}
+    
+    /* Fun Elements */
+    .glow{box-shadow:0 0 20px rgba(16,185,129,.3)}
+    .glow:hover{box-shadow:0 0 30px rgba(16,185,129,.5)}
+    
+    /* Warning Card */
+    .warning-card{background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.3); border-radius:16px; padding:24px; margin-top:32px}
+    .warning-card h3{color:#ef4444; margin-bottom:16px}
+    .warning-card p{color:#e2e8f0; margin-bottom:16px}
+    .examples{display:flex; gap:12px; flex-wrap:wrap}
+    .badge{background:rgba(239,68,68,.2); color:#fca5a5; padding:8px 12px; border-radius:8px; font-size:14px; font-weight:600}
+    
+    /* Additional styles */
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{padding:6px 10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:999px; font-size:12px; color:var(--muted)}
+    .muted{color:var(--muted)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, monospace; background:rgba(255,255,255,.06); padding:2px 6px; border-radius:6px; border:1px solid rgba(255,255,255,.08)}
+    .list{display:grid; gap:8px; margin:10px 0}
+    .check li{margin:6px 0}
+    .footnote{font-size:13px; color:var(--muted)}
+    .caption{font-size:13px; color:var(--muted); margin-top:6px}
+    
+    /* Stats Grid */
+    .stats-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin:24px 0}
+    .stat-card{background:var(--gradient5); padding:20px; border-radius:16px; text-align:center; color:white; font-weight:700}
+    .stat-card .number{font-size:32px; margin-bottom:8px}
+    .stat-card .label{font-size:14px; opacity:0.9}
+    
+    /* Timeline */
+    .timeline{position:relative; padding-left:30px}
+    .timeline::before{content:''; position:absolute; left:15px; top:0; bottom:0; width:2px; background:var(--gradient1)}
+    .timeline-item{position:relative; margin-bottom:24px}
+    .timeline-item::before{content:''; position:absolute; left:-22px; top:8px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:3px solid var(--bg)}
+    
+    /* Hero Section */
+    .hero{text-align:center; padding:60px 20px; background:linear-gradient(135deg, rgba(16,185,129,.1), rgba(59,130,246,.1)); border-radius:24px; margin-bottom:40px}
+    .hero h1{font-size: clamp(40px, 5vw, 60px); margin-bottom:20px}
+    .hero p{font-size:20px; color:var(--muted); max-width:600px; margin:0 auto 30px}
+    
+    /* Navigation */
+    .nav{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin:32px 0}
+    .nav a{background:rgba(255,255,255,.1); padding:12px 20px; border-radius:12px; border:1px solid rgba(255,255,255,.2); transition:all 0.3s ease}
+    .nav a:hover{background:rgba(255,255,255,.2); transform:translateY(-2px)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="glow">
+      <div class="brand">
+        <div class="logo floating">🧬</div>
+        <div>
+          <h1>🚀 Bio Protocol</h1>
+          <div class="muted">DeSci Ekosisteminin Geleceği - V2 Launchpad & BioXP Sistemi</div>
+        </div>
+      </div>
+      <div class="flex">
+        <a class="btn" href="#roadmap">🎯 Başla</a>
+        <a class="btn secondary" href="#stats">📊 İstatistikler</a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>🧬 Bio Protocol Nedir?</h1>
+      <p>Bio Protocol, merkeziyetsiz bilim (DeSci) ekosisteminde projelerin fonlanması, yönetilmesi ve büyümesi için oluşturulmuş yenilikçi bir altyapıdır.</p>
+      <div class="nav">
+        <a href="#v2">V2 Launchpad</a>
+        <a href="#bioxp">BioXP Sistemi</a>
+        <a href="#roadmap">Nasıl Katılırım</a>
+        <a href="#stats">Canlı Veriler</a>
+      </div>
+    </section>
+
+    <!-- V2 Launchpad -->
+    <section class="glow" id="v2">
+      <span class="tag">🚀 V2 Launchpad</span>
+      <h2>V2 ile Gelen Yenilikler</h2>
+      <p><b>$BIO token</b> ve <b>BioXP</b> ile fonlanacak projelere yatırım yapılan gelişmiş bir protokoldür.</p>
+      
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="ico">💰</div>
+          <h3>Fon Toplama</h3>
+          <p>Toplamda <b>77 bin $</b> fon toplanıp, <b>205 bin $ FDV</b> ile token piyasaya çıkar.</p>
+        </div>
+        
+        <div class="card">
+          <div class="ico">⚖️</div>
+          <h3>Adil Dağıtım</h3>
+          <p>Yeni sistemle birlikte token dağıtımı daha adil hâle getirilmiş (balina önleyici mekanizma).</p>
+        </div>
+        
+        <div class="card">
+          <div class="ico">🎯</div>
+          <h3>BioXP Modeli</h3>
+          <p>Ekosistem destekçilerinin sadakat puanıyla (BioXP) katılabileceği gelişmiş bir model.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BioXP Sistemi -->
+    <section class="glow" id="bioxp">
+      <span class="tag">⭐ BioXP Sistemi</span>
+      <h2>BioXP Nasıl Kazanılır?</h2>
+      <p>BioXP, lansmanlara katılım hakkı elde etmek için gerekli olan sadakat puanı sistemidir.</p>
+      
+      <div class="grid cols-2">
+        <div>
+          <div class="row">
+            <div class="ico">🔒</div>
+            <div>
+              <h3>$BIO Token Stake Et</h3>
+              <p>Ana token'ı stake ederek sürekli BioXP kazan.</p>
+            </div>
+            <div class="stat">⏱️ <b>Sürekli</b></div>
+          </div>
+          
+          <div class="row">
+            <div class="ico">💎</div>
+            <div>
+              <h3>Ekosistem Tokenleri</h3>
+              <p>$VITA, $ATH gibi ekosistem tokenlerini stake et.</p>
+            </div>
+            <div class="stat">💹 <b>Yield + XP</b></div>
+          </div>
+          
+          <div class="row">
+            <div class="ico">🐦</div>
+            <div>
+              <h3>İçerik Üretimi</h3>
+              <p>Ekosistemi bilgilendirici içerikler üret.</p>
+            </div>
+            <div class="stat">📱 <b>Sosyal</b></div>
+          </div>
+          
+          <div class="row">
+            <div class="ico">🗳️</div>
+            <div>
+              <h3>Yönetişim Katılımı</h3>
+              <p>Bonus: Yönetişim süreçlerine aktif katıl.</p>
+            </div>
+            <div class="stat">🎯 <b>Bonus</b></div>
+          </div>
+        </div>
+        
+        <!-- BioXP Görseli -->
+        <figure class="card floating">
+          <svg viewBox="0 0 400 300" width="100%" role="img" aria-label="BioXP kazanma yolları">
+            <defs>
+              <linearGradient id="xp1" x1="0" x2="1">
+                <stop offset="0" stop-color="#10b981"/>
+                <stop offset="1" stop-color="#3b82f6"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="400" height="300" rx="20" fill="#0f172a"/>
+            <text x="200" y="40" fill="#e2e8f0" font-size="18" font-weight="700" text-anchor="middle">BioXP Kazanma Yolları</text>
+            
+            <!-- Merkez -->
+            <circle cx="200" cy="150" r="40" fill="url(#xp1)" opacity="0.3"/>
+            <text x="200" y="155" fill="#ffffff" font-size="16" text-anchor="middle" font-weight="700">BioXP</text>
+            
+            <!-- Yollar -->
+            <g>
+              <rect x="50" y="80" width="80" height="40" rx="8" fill="#1e293b" stroke="#475569"/>
+              <text x="90" y="105" fill="#e2e8f0" font-size="12" text-anchor="middle">Stake BIO</text>
+              
+              <rect x="270" y="80" width="80" height="40" rx="8" fill="#1e293b" stroke="#475569"/>
+              <text x="310" y="105" fill="#e2e8f0" font-size="12" text-anchor="middle">Stake VITA</text>
+              
+              <rect x="50" y="180" width="80" height="40" rx="8" fill="#1e293b" stroke="#475569"/>
+              <text x="90" y="205" fill="#e2e8f0" font-size="12" text-anchor="middle">İçerik</text>
+              
+              <rect x="270" y="180" width="80" height="40" rx="8" fill="#1e293b" stroke="#475569"/>
+              <text x="310" y="205" fill="#e2e8f0" font-size="12" text-anchor="middle">Yönetişim</text>
+            </g>
+            
+            <!-- Oklar -->
+            <g stroke="#10b981" stroke-width="2" marker-end="url(#arrow1)">
+              <defs>
+                <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8" fill="#10b981"/>
+                </marker>
+              </defs>
+            <line x1="130" y1="100" x2="170" y2="130"/>
+            <line x1="270" y1="100" x2="230" y2="130"/>
+            <line x1="130" y1="200" x2="170" y2="170"/>
+            <line x1="270" y1="200" x2="230" y2="170"/>
+            </g>
+          </svg>
+          <figcaption class="caption">BioXP kazanmanın 4 ana yolu</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Nasıl Katılırım -->
+    <section class="glow" id="roadmap">
+      <span class="tag">🎯 Başlangıç Rehberi</span>
+      <h2>Lansmana Katılmak İçin Ne Yapmalıyım?</h2>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>1. Cüzdan Bağlama</h3>
+          <p>Öncelikle cüzdanını <a href="https://app.bio.xyz" target="_blank">app.bio.xyz</a> adresine bağlayarak puan kazanmanın ilk adımını atabilirsin.</p>
+        </div>
+        
+        <div class="timeline-item">
+          <h3>2. BioXP Toplama</h3>
+          <p>Lansmana katılmak için sadakat puanı (BioXP) toplaman gerekir. Bu puanlarla katılım hakkı elde edeceksin.</p>
+        </div>
+        
+        <div class="timeline-item">
+          <h3>3. Stake İşlemleri</h3>
+          <p>$BIO token stake edebilir, ekosistem tokenlerini ($VITA, $ATH) stake edebilir ve içerik üretebilirsin.</p>
+        </div>
+        
+        <div class="timeline-item">
+          <h3>4. Lansmana Katılım</h3>
+          <p>Yeterli BioXP topladığında, V2 lansmanlarına katılım hakkı elde edersin.</p>
+        </div>
+      </div>
+      
+      <div class="warning-card">
+        <h3>⚠️ Önemli Not</h3>
+        <p>Şu anda YAP puanları henüz dağıtılmadı. Yakın zamanda geçmişe dönük tüm puanlar dağıtılacak.</p>
+      </div>
+    </section>
+
+    <!-- İlk Proje -->
+    <section class="glow">
+      <span class="tag">🚀 İlk V2 Projesi</span>
+      <h2>İlk Proje Ne Zaman, Ne Kadar BioXP Biriktirmeliyim?</h2>
+      
+      <div class="grid cols-2">
+        <div>
+          <h3>⏰ Zaman</h3>
+          <p>İlk proje <b>ağustosun ikinci yarısında</b> (tahminen 1 hafta içinde) gelecek.</p>
+          
+          <h3>🎯 Hedef</h3>
+          <p>V2'nin ilk lansmanı, yapay zekâ destekli bilimsel araştırma ajanı <b>@aubrai_</b> ile olacak.</p>
+          
+          <h3>💎 BioXP Hedefi</h3>
+          <p>Ne kadar alım hakkı elde etmek istiyorsan ona göre stake yapıp BioXP puanı biriktirebilirsin. <b>100 bin XP</b> toplayan birini çok güzel fırsatlar beklediğine inanıyorum.</p>
+        </div>
+        
+        <div class="card">
+          <h3>📊 Site Durumu</h3>
+          <p>Siteye girdiğinde 25 proje görüyorsan, geç kalmadın! Bu projeler V1 sisteminde çıkmış projeler. Henüz V2 üzerinde proje çıkmadı.</p>
+          
+          <div class="chips">
+            <span class="chip">V1 Projeleri: 25</span>
+            <span class="chip">V2 Projeleri: 0</span>
+            <span class="chip">İlk V2: @aubrai_</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Canlı İstatistikler -->
+    <section class="glow" id="stats">
+      <span class="tag">📊 Canlı Veriler</span>
+      <h2>İçeride Kaç Cüzdan Var, Ortalama Ne Kadar Stake Yapıldı?</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">777</div>
+          <div class="label">Toplam Stake Yapan Cüzdan</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="number">15.5M $</div>
+          <div class="label">Toplam Stake Büyüklüğü</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="number">260</div>
+          <div class="label">1.000$ Üstü Stake</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="number">85M</div>
+          <div class="label">Toplam BioXP</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="number">20M</div>
+          <div class="label">Retro BioXP</div>
+        </div>
+      </div>
+      
+      <p class="footnote">💡 Bu veriler anlık olarak güncellenmektedir. En güncel bilgiler için <a href="https://app.bio.xyz" target="_blank">app.bio.xyz</a> adresini ziyaret edin.</p>
+    </section>
+
+    <!-- Özet -->
+    <section class="glow">
+      <span class="tag">🎯 Özet</span>
+      <h2>Bio Protocol V2 - DeSci Ekosisteminin Geleceği</h2>
+      
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>🎯 Adil Dağıtım</h3>
+          <p>Balina önleyici mekanizma ile token dağıtımı daha adil hâle getirildi.</p>
+        </div>
+        
+        <div class="card">
+          <h3>💪 Güçlü Topluluk</h3>
+          <p>777 cüzdan ile güçlü bir topluluk katılımı sağlandı.</p>
+        </div>
+        
+        <div class="card">
+          <h3>🚀 Yenilikçi Projeler</h3>
+          <p>Yapay zekâ destekli bilimsel araştırmalar ve DeSci projeleri destekleniyor.</p>
+        </div>
+      </div>
+      
+      <p class="footnote">Bio Protocol V2, DeSci ekosisteminde adil dağıtım, güçlü topluluk katılımı ve yenilikçi bilim projelerini aynı çatı altında topluyor. V2 ile gelen yeniliklerle birlikte heyecanlı günler bizi bekliyor.</p>
+    </section>
+
+    <!-- Kaynaklar -->
+    <section class="glow">
+      <span class="tag">📚 Kaynaklar</span>
+      <h2>Resmi Kaynaklar & Topluluk</h2>
+      
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>🌐 Resmi Siteler</h3>
+          <ul class="list">
+            <li>Bio App — <a href="https://app.bio.xyz" target="_blank">app.bio.xyz</a></li>
+            <li>Bio Protocol — <a href="https://bio.xyz" target="_blank">bio.xyz</a></li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>👥 Topluluk</h3>
+          <ul class="list">
+            <li>Discord — <a href="https://discord.gg/RmS5zYJnt5" target="_blank">Topluluğa Katıl</a></li>
+            <li>X (Twitter) — <a href="https://x.com/bioprotocol" target="_blank">@bioprotocol</a></li>
+            <li>Telegram TR — <a href="https://t.me/bioprotokoltr" target="_blank">🇹🇷 Bio Türkiye</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© Bio Protocol - DeSci Ekosisteminin Geleceği. Bu sayfa eğitim amaçlıdır ve finansal tavsiye niteliği taşımaz.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    });
+
+    document.querySelectorAll('.glow').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
